@@ -1,0 +1,28 @@
+<isinclude template="/components/modules" />
+
+<section class="container subscribe-product-wrapper mt-2">
+    <div class="row justify-content-center subscribe-product-form-wrapper">
+        <div class="col">
+            <iscontentasset aid="back-in-stock-label" />
+
+            <form class="subscribe-product-form" action="${URLUtils.url('Twilio-Subscribe')}" method="POST"
+                id="subscribe-product-available-form">
+                <section
+                    class="row no-gutters subscribe-product-form-fields-wrapper flex-nowrap flex-column flex-lg-row align-items-center">
+                    <div class="col-lg-8 col-12 mb-0 mr-md-1 subscribe-product-form-input-wrapper form-group required">
+                        <input id="subscribe-product-phone-number" type="text" class="form-control"
+                            aria-describedby="phoneNumberHelp"
+                            placeholder="${Resource.msg('label.input.subscribe.phonenumber', 'subscribeOutOfStock', null)}">
+                        <div class="invalid-feedback" role="alert" id="phoneNumberHelp"></div>
+                    </div>
+
+                    <isinclude template="/product/components/submitOutOfStock" sf-toolkit="on" />
+                </section>
+            </form>
+
+            <div class="subscribe-product-result alert alert-danger text-center mt-4 mb-0">
+                helllooooo
+            </div>
+        </div>
+    </div>
+</section>
