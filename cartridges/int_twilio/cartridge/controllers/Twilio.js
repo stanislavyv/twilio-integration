@@ -37,10 +37,12 @@ server.post(
                 SubscribeToProductHelpers.getObjectInstance(productId);
             SubscribeToProductHelpers.addPhoneNumber(currObject, phoneNumber);
         } catch (e) {
+            // TODO: SET VIEWDATA NOTIFICATION ERROR ISML
             const URLUtils = require("dw/web/URLUtils");
             return res.redirect(URLUtils.url("Error-Start"));
         }
 
+        // TODO SET NOTIFICATION VIEWDATA SUCCESS
         res.json({ msg: "Success" });
 
         next();

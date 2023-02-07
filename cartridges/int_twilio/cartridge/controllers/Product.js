@@ -1,17 +1,17 @@
 "use strict";
 
-var server = require("server");
-var page = module.superModule;
+const server = require("server");
+const page = module.superModule;
 
 server.extend(page);
 
-var csrfProtection = require("*/cartridge/scripts/middleware/csrf");
+const csrfProtection = require("*/cartridge/scripts/middleware/csrf");
 
 server.append("Show", csrfProtection.generateToken, function (req, res, next) {
-    var subscribeToProductForm = server.forms.getForm("subscribeToProduct");
+    const subscribeToProductForm = server.forms.getForm("subscribeToProduct");
     subscribeToProductForm.clear();
 
-    var viewData = res.getViewData();
+    const viewData = res.getViewData();
 
     viewData.forms = { subscribeToProductForm };
 

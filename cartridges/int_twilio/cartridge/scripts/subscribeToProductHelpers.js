@@ -4,6 +4,14 @@ const Transaction = require("dw/system/Transaction");
 const CUSTOM_OBJECT_TYPE = "ProductOutOfStockSubscription";
 
 /**
+ * Returns an iterator with all object instances of type ProductOutOfStockSubscription
+ * @returns {dw.util.SeekableIterator<dw.object.CustomObject>}
+ */
+function getAllObjectInstances() {
+    return CustomObjectMgr.getAllCustomObjects(CUSTOM_OBJECT_TYPE);
+}
+
+/**
  * Gets the object instance if it exists, else creates a new instance
  * @param {String} productId
  * @returns {dw.object.CustomObject | null}
@@ -52,7 +60,19 @@ function addPhoneNumber(currObject, phoneNumber) {
     }
 }
 
+/**
+ * Deletes the custom object instance
+ * @param {dw.object.CustomObject} customObject
+ */
+function deleteObjectInstance(customObject) {
+    Transaction.wrap(() => {
+        CustomObjectMgr.remove(customObject);
+    });
+}
+
 module.exports = {
+    getAllObjectInstances,
     getObjectInstance,
     addPhoneNumber,
+    deleteObjectInstance,
 };
