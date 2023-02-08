@@ -3,6 +3,7 @@
     <isscript>
         var assets = require('*/cartridge/scripts/assets');
         assets.addJs('/js/productDetail.js');
+        assets.addJs('/js/subscribeFormShow.js')
         assets.addCss('/css/product/detail.css');
     </isscript>
 
@@ -126,8 +127,9 @@
                             <isinclude template="product/components/addToCartProduct" />
                         </div>
                     <iselse/>
+                        <isinclude template="product/components/subscribeFormShow" sf-toolkit="on" />
+                        <isinclude template="product/components/subscribeOutOfStock" sf-toolkit="on" />
                     </isif>
-                    <isinclude template="product/components/subscribeOutOfStock" sf-toolkit="on" />
 
                     <!-- Social Sharing Icons -->
                     <div class="row">
