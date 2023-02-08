@@ -1,7 +1,10 @@
 <isinclude template="/components/modules" />
 
-<section class="container subscribe-product-wrapper mt-2 d-none">
-    <div class="row justify-content-center subscribe-product-form-wrapper">
+<section class="container subscribe-product-wrapper mt-2 px-0">
+
+    <isinclude template="/product/components/subscribeFormShow" sf-toolkit="on" />
+
+    <div class="row justify-content-center subscribe-product-form-wrapper d-none">
         <div class="col">
             <iscontentasset aid="back-in-stock-label" />
 

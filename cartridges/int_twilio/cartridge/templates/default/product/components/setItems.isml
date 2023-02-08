@@ -1,6 +1,6 @@
 <isscript>
     var assets = require('*/cartridge/scripts/assets');
-    assets.addJs('/js/subscribeFormShow.js')
+    assets.addJs('/js/subscribeForm.js')
 </isscript>
 
 <div class="set-items" itemtype="http://schema.org/SomeProducts" itemid="#product">

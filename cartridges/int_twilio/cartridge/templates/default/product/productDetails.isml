@@ -127,7 +127,6 @@
                             <isinclude template="product/components/addToCartProduct" />
                         </div>
                     <iselse/>
-                        <isinclude template="product/components/subscribeFormShow" sf-toolkit="on" />
                         <isinclude template="product/components/subscribeOutOfStock" sf-toolkit="on" />
                     </isif>
 
