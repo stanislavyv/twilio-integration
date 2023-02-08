@@ -3,14 +3,13 @@
     <isscript>
         var assets = require('*/cartridge/scripts/assets');
         assets.addJs('/js/productDetail.js');
-        assets.addJs('/js/subscribeFormShow.js')
+        assets.addJs('/js/subscribeForm.js')
         assets.addCss('/css/product/detail.css');
     </isscript>
 
     <isset name="product" value="${pdict.product}" scope="page" />
     <isset name="isQuickView" value="${false}" scope="page" />
     <isset name="isProductSet" value="${pdict.product.productType === 'set'}" scope="page" />
-    <isset name="subscribeForm" value="${pdict.forms.subscribeToProductForm}" scope="page" />
 
     <isobject object="${product.raw}" view="detail" />
     <div class="container product-detail product-wrapper" data-pid="${product.id}">

@@ -8,6 +8,8 @@ const server = require("server");
 const consentTracking = require("*/cartridge/scripts/middleware/consentTracking");
 const csrfProtection = require("*/cartridge/scripts/middleware/csrf");
 
+const Resource = require("dw/web/Resource");
+
 /**
  * Twilio-Subscribe : This endpoint is called when the subscribe to product form is submitted
  * @name Base/Twilio-Subscribe
@@ -30,22 +32,46 @@ server.post(
         const phoneNumber = subscribeForm.phoneNumber.htmlValue;
         const productId = subscribeForm.productId.htmlValue;
 
+        if (!subscribeForm.valid) {
+            res.json({
+                success: false,
+                notificationMessage: Resource.msg(
+                    "label.submit.result.notification.error",
+                    "subscribeOutOfStock",
+                    null
+                ),
+            });
+
+            return next();
+        }
+
         const SubscribeToProductHelpers = require("*/cartridge/scripts/subscribeToProductHelpers");
 
         try {
             const currObject =
                 SubscribeToProductHelpers.getObjectInstance(productId);
             SubscribeToProductHelpers.addPhoneNumber(currObject, phoneNumber);
+
+            res.json({
+                success: true,
+                notificationMessage: Resource.msg(
+                    "label.submit.result.notification.success",
+                    "subscribeOutOfStock",
+                    null
+                ),
+            });
         } catch (e) {
-            // TODO: SET VIEWDATA NOTIFICATION ERROR ISML
-            const URLUtils = require("dw/web/URLUtils");
-            return res.redirect(URLUtils.url("Error-Start"));
+            res.json({
+                success: false,
+                notificationMessage: Resource.msg(
+                    "label.submit.result.notification.error",
+                    "subscribeOutOfStock",
+                    null
+                ),
+            });
         }
 
-        // TODO SET NOTIFICATION VIEWDATA SUCCESS
-        res.json({ msg: "Success" });
-
-        next();
+        return next();
     }
 );
 

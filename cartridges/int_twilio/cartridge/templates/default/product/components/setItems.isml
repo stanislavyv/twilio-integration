@@ -118,9 +118,9 @@
                             <!-- Cart and [Optionally] Apple Pay -->
                             <isinclude template="product/components/addToCartProduct" />
                         <iselse/>
-                            <iscomment> Subscribe to product form </iscomment>
-                            <isinclude template="product/components/subscribeOutOfStock" sf-toolkit="on" />
                         </isif>
+                        <iscomment> Subscribe to product form </iscomment>
+                        <isinclude template="product/components/subscribeOutOfStock" sf-toolkit="on" />
 
                         <div class="row">
                             <isinclude template="product/components/socialIcons" />

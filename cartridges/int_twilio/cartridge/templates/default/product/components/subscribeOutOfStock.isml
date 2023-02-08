@@ -1,7 +1,9 @@
 <isinclude template="/components/modules" />
 
-<section class="container subscribe-product-wrapper mt-2 px-0">
+<isset name="subscribeForm" value="${pdict.forms.subscribeToProductForm}" scope="page" />
 
+<section class="container subscribe-product-wrapper mt-2 px-0">
+    <iscomment> Button to show the form if product is out of stock </iscomment>
     <isinclude template="/product/components/subscribeFormShow" sf-toolkit="on" />
 
     <div class="row justify-content-center subscribe-product-form-wrapper d-none">
@@ -19,7 +21,7 @@
                         data-range-error="${Resource.msg('error.message.range.phone.number.subscribe.product.form', 'forms', null)}"
                         data-pattern-mismatch="${Resource.msg('error.message.parse.phone.number.subscribe.product.form', 'forms', null)}"
                         <isprint value=" ${subscribeForm.phoneNumber.attributes}" encoding="off" />/>
-                    <div class="invalid-feedback" role="alert" id="phoneNumberHelp"></div>
+                    <span class="invalid-feedback" role="alert" id="phoneNumberHelp"></span>
                 </div>
 
                 <input type="hidden" name="${pdict.csrf.tokenName}" value="${pdict.csrf.token}" />
@@ -31,8 +33,8 @@
             </section>
             </form>
 
-            <div class="subscribe-product-result alert alert-danger text-center mt-4 mb-0">
-                Notification Test
+            <iscomment> Notification result </iscomment>
+            <div class="subscribe-product-result alert text-center mt-3 mb-0">
             </div>
         </div>
     </div>
