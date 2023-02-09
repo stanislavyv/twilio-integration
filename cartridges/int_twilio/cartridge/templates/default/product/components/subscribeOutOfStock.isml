@@ -13,7 +13,7 @@
             <form class="subscribe-product-form" action="${URLUtils.url('Twilio-Subscribe')}" method="POST" <isprint
                 value="${subscribeForm.attributes}" encoding="off" />>
             <section
-                class="row no-gutters subscribe-product-form-fields-wrapper flex-nowrap flex-column flex-lg-row align-items-center">
+                class="row no-gutters subscribe-product-form-fields-wrapper flex-nowrap flex-column flex-lg-row align-items-start">
                 <div class="col-lg-8 col-12 mb-0 mr-md-1 subscribe-product-form-input-wrapper form-group required">
                     <input type="text" class="form-control" aria-describedby="phoneNumberHelp"
                         placeholder="${Resource.msg('label.input.subscribe.phonenumber', 'subscribeOutOfStock', null)}"
@@ -21,15 +21,16 @@
                         data-range-error="${Resource.msg('error.message.range.phone.number.subscribe.product.form', 'forms', null)}"
                         data-pattern-mismatch="${Resource.msg('error.message.parse.phone.number.subscribe.product.form', 'forms', null)}"
                         <isprint value=" ${subscribeForm.phoneNumber.attributes}" encoding="off" />/>
-                    <span class="invalid-feedback" role="alert" id="phoneNumberHelp"></span>
+
+                    <div class="invalid-feedback" role="alert" id="phoneNumberHelp"></div>
                 </div>
+
+                <isinclude template="/product/components/submitOutOfStock" sf-toolkit="on" />
 
                 <input type="hidden" name="${pdict.csrf.tokenName}" value="${pdict.csrf.token}" />
                 <input type="hidden" value="${product.id}" <isprint value="${subscribeForm.productId.attributes}"
                     encoding="off" />
                 />
-
-                <isinclude template="/product/components/submitOutOfStock" sf-toolkit="on" />
             </section>
             </form>
 
