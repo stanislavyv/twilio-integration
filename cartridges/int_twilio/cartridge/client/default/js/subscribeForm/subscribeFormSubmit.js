@@ -37,6 +37,8 @@ function sendSubscriptionData() {
 
                         $notification.text(data.notificationMessage);
                         $notification.delay(5000).fadeOut("slow");
+
+                        $form.find(":submit").prop("disabled", true);
                     },
                     error: function (e) {
                         $form.spinner().stop();
