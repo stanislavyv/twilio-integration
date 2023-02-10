@@ -29,10 +29,10 @@ server.post(
     function (req, res, next) {
         const subscribeForm = server.forms.getForm("subscribeToProduct");
 
-        const phoneNumber = subscribeForm.phoneNumber.htmlValue;
-        const productId = subscribeForm.productId.htmlValue;
+        const phoneNumber = subscribeForm.phoneNumber;
+        const productId = subscribeForm.productId;
 
-        if (!subscribeForm.valid) {
+        if (!phoneNumber.valid || !productId.valid) {
             res.json({
                 success: false,
                 notificationMessage: Resource.msg(
@@ -48,9 +48,13 @@ server.post(
         const SubscribeToProductHelpers = require("*/cartridge/scripts/subscribeToProductHelpers");
 
         try {
-            const currObject =
-                SubscribeToProductHelpers.getObjectInstance(productId);
-            SubscribeToProductHelpers.addPhoneNumber(currObject, phoneNumber);
+            const currObject = SubscribeToProductHelpers.getObjectInstance(
+                productId.htmlValue
+            );
+            SubscribeToProductHelpers.addPhoneNumber(
+                currObject,
+                phoneNumber.htmlValue
+            );
 
             res.json({
                 success: true,
