@@ -1,8 +1,8 @@
-<isinclude template="/components/modules" />
+<section class="container subscribe-product-wrapper mt-2 px-0 ${isSubscribeFormShown ? "" : "d-none"}">
+    <isinclude template="/components/modules" />
 
-<isset name="subscribeForm" value="${pdict.forms.subscribeToProductForm}" scope="page" />
+    <isset name="subscribeForm" value="${pdict.forms.subscribeToProductForm}" scope="page" />
 
-<section class="container subscribe-product-wrapper mt-2 px-0">
     <iscomment> Button to show the form if product is out of stock </iscomment>
     <isinclude template="/product/components/subscribeFormShow" sf-toolkit="on" />
 

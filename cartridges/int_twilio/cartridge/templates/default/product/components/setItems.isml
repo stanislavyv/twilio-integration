@@ -104,23 +104,7 @@
 
                         <hr>
 
-                        <isif condition="${product.available}">
-                            <div class="row">
-                                <div class="col-12">
-                                    <!-- Prices -->
-                                    <div class="prices">
-                                        <isset name="price" value="${product.price}" scope="page" />
-                                        <isinclude template="product/components/pricing/main" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Cart and [Optionally] Apple Pay -->
-                            <isinclude template="product/components/addToCartProduct" />
-                        <iselse/>
-                        </isif>
-                        <iscomment> Subscribe to product form </iscomment>
-                        <isinclude template="product/components/subscribeOutOfStock" sf-toolkit="on" />
+                        <isinclude template="product/components/productAvailibilityActions" sf-toolkit="on" />
 
                         <div class="row">
                             <isinclude template="product/components/socialIcons" />
