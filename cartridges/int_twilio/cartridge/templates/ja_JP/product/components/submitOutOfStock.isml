@@ -1,0 +1,5 @@
+<div class="col-lg-5 col-12 mt-1 mt-lg-0 subscribe-product-btn-wrapper">
+    <button type="submit" id="submitEmailButton" class="btn btn-primary btn-block">
+        ${Resource.msg('label.submit.subscribe', 'subscribeOutOfStock', null)}
+    </button>
+</div>

@@ -25,6 +25,10 @@ cartridges/app_storefront_base/cartridge/static/en_GB/fonts/
 
 cartridges/sfcc_dev_tools
 
+notes.txt
+commit.txt
+twilio_env.json
+
 coverage/
 npm-debug.log
 cartridges.zip

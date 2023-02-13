@@ -3,12 +3,14 @@
     <isscript>
         var assets = require('*/cartridge/scripts/assets');
         assets.addJs('/js/productDetail.js');
+        assets.addJs('/js/subscribeForm.js')
         assets.addCss('/css/product/detail.css');
     </isscript>
 
     <isset name="product" value="${pdict.product}" scope="page" />
     <isset name="isQuickView" value="${false}" scope="page" />
     <isset name="isProductSet" value="${pdict.product.productType === 'set'}" scope="page" />
+
     <isobject object="${product.raw}" view="detail" />
     <div class="container product-detail product-wrapper" data-pid="${product.id}">
         <div class="row">
@@ -17,7 +19,6 @@
                 <div class="product-breadcrumb d-md-none">
                     <isinclude template="components/breadcrumbs/pageBreadcrumbs" />
                 </div>
-
                 <!-- Product Name -->
                 <div class="row">
                     <div class="d-md-none col-sm-12">
@@ -45,7 +46,6 @@
                         <h1 class="product-name hidden-sm-down">${product.productName}</h1>
                     </div>
                 </div>
-
 
                 <div class="row">
                     <div class="col">
@@ -110,20 +110,7 @@
                         </div>
                     </div>
 
-                    <div class="prices-add-to-cart-actions">
-                        <div class="row">
-                            <div class="col-12">
-                                <!-- Prices -->
-                                <div class="prices">
-                                    <isset name="price" value="${product.price}" scope="page" />
-                                    <isinclude template="product/components/pricing/main" />
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Cart and [Optionally] Apple Pay -->
-                        <isinclude template="product/components/addToCartProduct" />
-                    </div>
+                    <isinclude template="product/components/productAvailibilityActions" sf-toolkit="on" />
 
                     <!-- Social Sharing Icons -->
                     <div class="row">
