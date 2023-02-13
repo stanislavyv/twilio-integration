@@ -52,23 +52,18 @@ function getAllAttrValues(
             selectable: true,
         };
 
-        if (processedAttr.selectable) {
-            valueUrl =
-                isSelected && endPoint !== "Show"
-                    ? variationModel.urlUnselectVariationValue(
-                          actionEndpoint,
-                          attr
-                      )
-                    : variationModel.urlSelectVariationValue(
-                          actionEndpoint,
-                          attr,
-                          value
-                      );
-            processedAttr.url = urlHelper.appendQueryParams(valueUrl, [
-                selectedOptionsQueryParams,
-                "quantity=" + quantity,
-            ]);
-        }
+        valueUrl =
+            isSelected && endPoint !== "Show"
+                ? variationModel.urlUnselectVariationValue(actionEndpoint, attr)
+                : variationModel.urlSelectVariationValue(
+                      actionEndpoint,
+                      attr,
+                      value
+                  );
+        processedAttr.url = urlHelper.appendQueryParams(valueUrl, [
+            selectedOptionsQueryParams,
+            "quantity=" + quantity,
+        ]);
 
         if (isSwatchable(attr.attributeID)) {
             processedAttr.images = new ImageModel(value, {

@@ -6,8 +6,8 @@ const SEPARATOR = ", ";
  * Notifies all customers subscribed to a product if it's in stock and deletes the custom objects
  */
 exports.execute = function () {
-    const twilioService = require("~/cartridge/scripts/twilioService");
-    const SubscribeToProductHelpers = require("~/cartridge/scripts/subscribeToProductHelpers");
+    const twilioService = require("~/cartridge/scripts/services/twilioService");
+    const SubscribeToProductHelpers = require("~/cartridge/scripts/helpers/subscribeToProductHelpers");
     const ProductMgr = require("dw/catalog/ProductMgr");
 
     const iterator = SubscribeToProductHelpers.getAllObjectInstances();
@@ -21,14 +21,32 @@ exports.execute = function () {
             const customerPhoneNumbers =
                 currObject.custom.customerPhoneNumbers.split(SEPARATOR);
 
+            let isError = false;
+            const phoneNumbersNotProcessed = [];
             customerPhoneNumbers.forEach((phoneNumber) => {
-                twilioService.call({
-                    To: phoneNumber,
-                    Body: `${currProduct.name} is back in stock!`,
-                });
+                let serviceResult = twilioService
+                    .call({
+                        To: phoneNumber,
+                        Body: `${currProduct.name} is back in stock!`,
+                    })
+                    .isOk();
+
+                if (!serviceResult) {
+                    isError = true;
+                    phoneNumbersNotProcessed.push(phoneNumber);
+                }
             });
 
-            SubscribeToProductHelpers.deleteObjectInstance(currObject);
+            if (isError) {
+                const newPhoneNumbers =
+                    phoneNumbersNotProcessed.join(SEPARATOR);
+                SubscribeToProductHelpers.updatePhoneNumbers(
+                    newPhoneNumbers,
+                    currObject
+                );
+            } else {
+                SubscribeToProductHelpers.deleteObjectInstance(currObject);
+            }
         }
     }
 };

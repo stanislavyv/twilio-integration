@@ -1,7 +1,7 @@
 "use strict";
 
 const SERVICE_NAME = "http.form.twilio.sendSms";
-const REGULAR_EXPRESSION_PHONE_NUMBERS = /To=(\+?d+)?[\s*\d+]"/;
+const PHONE_NUMBERS_PATTERN = /To=(\+?d+)?[\s*\d+]"/;
 const TWILIO_PHONE_NUMBER = "+13855038602";
 
 const LocalServiceRegistry = require("dw/svc/LocalServiceRegistry");
@@ -25,7 +25,7 @@ const twilioService = LocalServiceRegistry.createService(SERVICE_NAME, {
         return result;
     },
     filterLogMessage(msg) {
-        return msg.replace(REGULAR_EXPRESSION_PHONE_NUMBERS, "To=**********");
+        return msg.replace(PHONE_NUMBERS_PATTERN, "To=**********");
     },
 });
 

@@ -45,7 +45,7 @@ server.post(
             return next();
         }
 
-        const SubscribeToProductHelpers = require("*/cartridge/scripts/subscribeToProductHelpers");
+        const SubscribeToProductHelpers = require("*/cartridge/scripts/helpers/subscribeToProductHelpers");
 
         try {
             const currObject = SubscribeToProductHelpers.getObjectInstance(

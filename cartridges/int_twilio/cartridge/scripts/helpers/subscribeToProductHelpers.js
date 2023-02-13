@@ -70,9 +70,21 @@ function deleteObjectInstance(customObject) {
     });
 }
 
+/**
+ * Updates the phone numbers of an object instance
+ * @param {String} newPhoneNumbers
+ * @param {dw.object.CustomObject} customObject
+ */
+function updatePhoneNumbers(newPhoneNumbers, customObject) {
+    Transaction.wrap(() => {
+        customObject.custom.customerPhoneNumbers = newPhoneNumbers;
+    });
+}
+
 module.exports = {
     getAllObjectInstances,
     getObjectInstance,
     addPhoneNumber,
     deleteObjectInstance,
+    updatePhoneNumbers,
 };
