@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="http://www.demandware.com/xml/impex/library/2006-10-31"
+    library-id="RefArchSharedLibrary">
+
+    <content content-id="back-in-stock-label">
+        <display-name xml:lang="x-default">Back In Stock Label</display-name>
+        <description xml:lang="x-default">A label for the back in stock notification subscription
+            form</description>
+        <online-flag>true</online-flag>
+        <searchable-flag>true</searchable-flag>
+        <page-attributes />
+        <custom-attributes>
+            <custom-attribute attribute-id="body" xml:lang="x-default">&lt;p&gt;Please, fill your
+                phone number to subscribe for notification&lt;/p&gt;</custom-attribute>
+            <custom-attribute attribute-id="body" xml:lang="fr-FR">&lt;p&gt;Veuillez saisir votre
+                numéro de téléphone pour vous abonner à la notification&lt;/p&gt;</custom-attribute>
+            <custom-attribute attribute-id="body" xml:lang="it-IT">&lt;p&gt;Per favore, inserisci il
+                tuo numero di telefono per iscriverti alla notifica&lt;/p&gt;</custom-attribute>
+            <custom-attribute attribute-id="body" xml:lang="ja-JP">
+                &lt;p&gt;通知を購読するには、電話番号を入力してください&lt;/p&gt;</custom-attribute>
+            <custom-attribute attribute-id="body" xml:lang="zh-CN">&lt;p&gt;请填写您的电话号码以订阅通知&lt;/p&gt;</custom-attribute>
+        </custom-attributes>
+    </content>
+</library>
