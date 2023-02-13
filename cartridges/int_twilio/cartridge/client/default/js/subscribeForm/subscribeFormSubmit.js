@@ -1,6 +1,27 @@
 "use strict";
 
-const formValidation = require("base/components/formValidation");
+/**
+ * shows a notification element
+ * @param {JQuery} $notification - notification element
+ * @param {Boolean} success - true or false
+ * @param {String} message - notificationMessage
+ */
+function fireNotification($notification, success, message) {
+    console.log(success);
+
+    if (success) {
+        $notification.removeClass("alert-danger");
+        $notification.addClass("alert-success");
+    } else {
+        $notification.removeClass("alert-success");
+        $notification.addClass("alert-danger");
+    }
+
+    $notification.text(message);
+    $notification.show();
+
+    $notification.delay(5000).fadeOut("slow");
+}
 
 function sendSubscriptionData() {
     $(function () {
@@ -28,24 +49,19 @@ function sendSubscriptionData() {
                     data: $form.serialize(),
                     success: function (data) {
                         $form.spinner().stop();
-                        if (!data.success) {
-                            formValidation($form, data);
-                            $notification.addClass("alert-danger");
-                        } else {
-                            $notification.addClass("alert-success");
-                        }
-
-                        $notification.text(data.notificationMessage);
-                        $notification.delay(5000).fadeOut("slow");
-
-                        $form.find(":submit").prop("disabled", true);
+                        fireNotification(
+                            $notification,
+                            data.success,
+                            data.notificationMessage
+                        );
                     },
                     error: function (e) {
                         $form.spinner().stop();
-                        $notification.addClass("alert-danger");
-                        $notification.text(data.notificationMessage);
-
-                        $notification.delay(5000).fadeOut("slow");
+                        fireNotification(
+                            $notification,
+                            false,
+                            data.notificationMessage
+                        );
                     },
                 });
 
