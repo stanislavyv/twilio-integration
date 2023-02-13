@@ -1,4 +1,4 @@
-<section class="container subscribe-product-wrapper mt-2 px-0 ${isSubscribeFormShown ? "" : "d-none"}">
+<section class="container subscribe-product-wrapper mt-2 px-0 ${isSubscribeFormShown ? "" : " d-none"}">
     <isinclude template="/components/modules" />
 
     <isset name="subscribeForm" value="${pdict.forms.subscribeToProductForm}" scope="page" />
@@ -28,8 +28,8 @@
                 <isinclude template="/product/components/submitOutOfStock" sf-toolkit="on" />
 
                 <input type="hidden" name="${pdict.csrf.tokenName}" value="${pdict.csrf.token}" />
-                <input type="hidden" value="${product.id}" <isprint value="${subscribeForm.productId.attributes}"
-                    encoding="off" />
+                <input type="hidden" value="${product.id}" class="input-product-id" <isprint
+                    value="${subscribeForm.productId.attributes}" encoding="off" />
                 />
             </section>
             </form>
